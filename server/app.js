@@ -3,44 +3,14 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const PORT = 5005;
 const cors = require("cors");
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
-const StudentsSchema = new Schema({
-  firstName: String,
-  lastName: String,
-  email: String,
-  phone: Number,
-  linkedinUrl: String,
-  languages: { type: String, enum: [] },
-  program: String,
-  background: String,
-  image: String,
-  projects: [],
-  cohort: { type: String, unique: true },
-});
-
-const CohortSchema = new Schema({
-  inProgress: Boolean,
-  cohortSlug: { type: String, unique: true },
-  cohortName: String,
-  program: String,
-  campus: String,
-  startDate: Date,
-  endDate: Date,
-  programManager: String,
-  leadTeacher: String,
-  totalHours: Number,
-});
-
-const studentModel = mongoose.model("students", StudentsSchema);
-const cohortModel = mongoose.model("cohort", CohortSchema);
 // STATIC DATA
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
 // ...
 const cohortsData = require("./data/cohorts.json");
 const studentsData = require("./data/students.json");
 // INITIALIZE EXPRESS APP - https://expressjs.com/en/4x/api.html#express
+
 const app = express();
 
 mongoose
@@ -50,7 +20,7 @@ mongoose
 
 // MIDDLEWARE
 // Research Team - Set up CORS middleware here:
-app.use(cors());
+
 // ...
 app.use(express.json());
 app.use(morgan("dev"));
