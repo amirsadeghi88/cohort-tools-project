@@ -9,18 +9,18 @@ const PORT = 5005;
 const cohortsData = require("./data/cohorts.json");
 const studentsData = require("./data/students.json");
 // INITIALIZE EXPRESS APP - https://expressjs.com/en/4x/api.html#express
-const app = express();
 
+const app = express();
 
 // MIDDLEWARE
 // Research Team - Set up CORS middleware here:
+
 // ...
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
 
 // ROUTES - https://expressjs.com/en/starter/basic-routing.html
 // Devs Team - Start working on the routes here:
@@ -30,12 +30,12 @@ app.get("/docs", (req, res) => {
 });
 
 app.get("/api/cohorts", (req, res) => {
-res.sendFile(__dirname + "/data/cohorts.json");
-})
+  res.sendFile(__dirname + "/data/cohorts.json");
+});
 
 app.get("/api/students", (req, res) => {
-res.sendFile(__dirname + "/data/students.json");
-})
+  res.sendFile(__dirname + "/data/students.json");
+});
 
 // START SERVER
 app.listen(PORT, () => {
