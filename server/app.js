@@ -6,6 +6,8 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const cohortModel = require("./model/cohortModel");
 
+/* HELLOOO WORK PLEASE */
+
 // STATIC DATA
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
 // ...
