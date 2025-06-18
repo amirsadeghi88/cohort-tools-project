@@ -13,6 +13,11 @@ const studentsData = require("./data/students.json");
 
 const app = express();
 
+mongoose
+  .connect("mongodb://127.0.0.1:27017/cohort-tools-api")
+  .then((x) => console.log(`Connected to Database: "${x.connections[0].name}"`))
+  .catch((err) => console.error("Error connecting to MongoDB", err));
+
 // MIDDLEWARE
 // Research Team - Set up CORS middleware here:
 
@@ -32,11 +37,19 @@ app.get("/docs", (req, res) => {
 });
 
 app.get("/api/cohorts", (req, res) => {
-  res.sendFile(__dirname + "/data/cohorts.json");
+  // res.sendFile(__dirname + "/data/cohorts.json");
+  cohortModel
+    .find()
+    .then((cohorts) => res.json(cohorts))
+    .catch((err) => console.log(err));
 });
 
 app.get("/api/students", (req, res) => {
-  res.sendFile(__dirname + "/data/students.json");
+  // res.sendFile(__dirname + "/data/students.json");
+  studentModel
+    .find()
+    .then((students) => res.json(students))
+    .catch((err) => console.log(err));
 });
 
 // START SERVER
