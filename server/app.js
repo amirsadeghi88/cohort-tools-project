@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 const PORT = 5005;
 const cors = require("cors");
 const mongoose = require("mongoose");
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DEFINE THE MODELS FIRST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+const cohortModel = require("./model/cohortModel");
 
 // STATIC DATA
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
@@ -22,7 +22,12 @@ mongoose
 
 // MIDDLEWARE
 // Research Team - Set up CORS middleware here:
-
+app.use(
+  cors({
+    // Add the URLs of allowed origins to this array
+    origin: ["http://localhost:5173", "http://example.com"],
+  })
+);
 // ...
 app.use(express.json());
 app.use(morgan("dev"));
