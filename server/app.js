@@ -67,6 +67,8 @@ app.post("/api/cohorts", (req, res) => {
     });
 });
 
+app.get;
+
 app.get("/api/students", (req, res) => {
   // res.sendFile(__dirname + "/data/students.json");
   studentModel
