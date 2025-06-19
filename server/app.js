@@ -47,8 +47,24 @@ app.get("/api/cohorts", (req, res) => {
   // res.sendFile(__dirname + "/data/cohorts.json");
   cohortModel
     .find()
-    .then((cohorts) => res.json(cohorts))
-    .catch((err) => console.log(err));
+    .then((cohorts) => res.status(201).json(cohorts))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+app.post("/api/cohorts", (req, res) => {
+  cohortModel
+    .create(req.body)
+    .then((createdCohort) => {
+      console.log("created cohort", createdCohort);
+      res.status(201).json(createdCohort);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 app.get("/api/students", (req, res) => {
